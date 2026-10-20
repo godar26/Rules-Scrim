@@ -163,13 +163,23 @@
         }
 
         @keyframes vault-turn {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes vault-dial {
-            0% { transform: rotate(-40deg); }
-            55% { transform: rotate(115deg); }
-            100% { transform: rotate(300deg); }
+            0% {
+                transform: rotate(-40deg);
+            }
+
+            55% {
+                transform: rotate(115deg);
+            }
+
+            100% {
+                transform: rotate(300deg);
+            }
         }
 
         a {
@@ -1352,7 +1362,7 @@
             transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
         }
 
-        .role-card > * {
+        .role-card>* {
             position: relative;
             z-index: 2;
         }
@@ -1442,6 +1452,64 @@
             padding: 16px;
             border: 1px solid var(--line);
             background: var(--panel);
+        }
+
+        .equipment-examples {
+            margin-top: 36px;
+        }
+
+        .equipment-examples h3 {
+            margin: 0 0 5px;
+            color: var(--cyan);
+            font: 700 30px/.95 var(--display);
+            text-transform: uppercase;
+        }
+
+        .equipment-examples>p {
+            margin: 0 0 15px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .equipment-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .equipment-shot {
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: var(--panel);
+        }
+
+        .equipment-shot img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+        }
+
+        .equipment-shot figcaption {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 12px;
+        }
+
+        .equipment-shot strong {
+            color: var(--paper);
+            font: 700 20px/.95 var(--display);
+            text-transform: uppercase;
+        }
+
+        .equipment-shot span {
+            color: var(--lime);
+            font: 500 9px var(--mono);
+            text-align: right;
         }
 
         .operator-rule strong {
@@ -1549,6 +1617,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .equipment-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
             .arsenal-stats {
                 grid-column: 2;
             }
@@ -1653,6 +1725,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .equipment-gallery {
+                grid-template-columns: 1fr;
+            }
+
             .restriction-layout {
                 grid-template-columns: 1fr;
             }
@@ -1744,17 +1820,18 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-                .vault-mark:before,
-                .vault-mark:after,
-                .vault-handle {
-                    animation: none;
-                }
+
+            .vault-mark:before,
+            .vault-mark:after,
+            .vault-handle {
+                animation: none;
+            }
         }
 
         .pdf-export {
-                background: #120b19 !important;
-                color: #f1f0e9 !important;
-                font-size: 9pt !important;
+            background: #120b19 !important;
+            color: #f1f0e9 !important;
+            font-size: 9pt !important;
         }
 
         .pdf-export .topbar,
@@ -1763,28 +1840,28 @@
         .pdf-export .format-toolbar,
         .pdf-export .restriction-tools,
         .pdf-export .empty-state {
-                display: none !important;
+            display: none !important;
         }
 
         .pdf-export .hero {
-                min-height: 0;
-                grid-template-columns: 1fr .65fr;
-                gap: 10mm;
-                padding: 18mm 12mm;
-                background: #181524 !important;
-                break-after: page;
+            min-height: 0;
+            grid-template-columns: 1fr .65fr;
+            gap: 10mm;
+            padding: 18mm 12mm;
+            background: #181524 !important;
+            break-after: page;
         }
 
         .pdf-export main {
-                width: 100%;
+            width: 100%;
         }
 
         .pdf-export .section {
-                padding: 9mm 0;
+            padding: 9mm 0;
         }
 
         .pdf-export .section-head h2 {
-                font-size: 34pt;
+            font-size: 34pt;
         }
 
         .pdf-export .map-group,
@@ -1793,17 +1870,17 @@
         .pdf-export .role-card,
         .pdf-export .role-rules,
         .pdf-export .check-item {
-                break-inside: avoid;
+            break-inside: avoid;
         }
 
         .pdf-export .section,
         .pdf-export .role-card {
-                opacity: 1 !important;
-                transform: none !important;
+            opacity: 1 !important;
+            transform: none !important;
         }
 
         .pdf-export footer {
-                padding: 5mm 0;
+            padding: 5mm 0;
         }
 
         @media print {
@@ -2073,7 +2150,8 @@
             <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#series">BO3 / BO5</a><a
                 href="#restrictions">Restrictions</a><a href="#roles">Rôles</a><a href="#match">Avant-match</a>
         </nav>
-        <button class="download-button" type="button" aria-label="Télécharger le guide au format PDF">↓ &nbsp; Télécharger le PDF</button>
+        <button class="download-button" type="button" aria-label="Télécharger le guide au format PDF">↓ &nbsp;
+            Télécharger le PDF</button>
     </header>
 
     <section class="hero" id="accueil">
@@ -2135,7 +2213,7 @@
                     <div class="metric"><span>Spectateurs / mot de passe</span><strong>N/A / N/A</strong></div>
                     <div class="metric"><span>Autoriser les invitations</span><strong>Oui</strong></div>
                 </article>
-                                <article class="mode-card">
+                <article class="mode-card">
                     <h3>Contrôle</h3>
                     <div class="metric"><span>Limite de score de manche</span><strong>3</strong></div>
                     <div class="metric"><span>Temps par manche</span><strong>90 s</strong></div>
@@ -2493,13 +2571,22 @@
             </div>
             <div class="roles-layout">
                 <div class="role-grid">
-                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
                     </article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de précision</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong>
+                    </article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong>
+                    </article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de
+                            précision</strong></article>
                 </div>
                 <article class="role-rules">
                     <h3>Règles de classe</h3>
@@ -2534,6 +2621,31 @@
                 <div><strong>Changement en cours de carte</strong>
                     <p>Un joueur peut changer de compétence pendant la carte à condition de rester conforme. Coordonnez
                         chaque changement avec l’équipe. L’infraction entraîne la perte de la carte concernée.</p>
+                </div>
+            </div>
+            <div class="equipment-examples">
+                <h3>Exemples d’équipements</h3>
+                <p>Captures de classes multijoueur à titre d’exemple. Vérifiez toujours que chaque élément respecte les
+                    restrictions en vigueur.</p>
+                <div class="equipment-gallery">
+                    <figure class="equipment-shot">
+                        <img src="assets/maps/Equipement.jpg"
+                            alt="Capture d’une classe multijoueur avec le fusil LW3-Tundra" loading="lazy"
+                            decoding="async">
+                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
+                    </figure>
+                    <figure class="equipment-shot">
+                        <img src="assets/maps/Equipement1.jpg"
+                            alt="Capture d’une classe multijoueur avec le fusil Oden Châtiment divin" loading="lazy"
+                            decoding="async">
+                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
+                    </figure>
+                    <figure class="equipment-shot">
+                        <img src="assets/maps/Equipement2.jpg"
+                            alt="Capture d’une classe multijoueur avec le VMP Éclosions toxiques" loading="lazy"
+                            decoding="async">
+                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
