@@ -16,16 +16,16 @@
     <style>
         :root {
             color-scheme: dark;
-            --ink: #120b19;
-            --panel: #1b1326;
-            --panel-2: #241a32;
-            --paper: #f5effc;
-            --muted: #d7c4ef;
-            --line: rgba(218, 192, 255, .16);
-            --lime: #dcb8ff;
-            --acid: #b186ff;
-            --orange: #ff9fd1;
-            --cyan: #bca8ff;
+            --ink: #09070f;
+            --panel: #181524;
+            --panel-2: #201a2d;
+            --paper: #f6f0ff;
+            --muted: #bcaed8;
+            --line: rgba(220, 199, 255, .18);
+            --lime: #d9b6ff;
+            --acid: #a980ff;
+            --orange: #ffb29e;
+            --cyan: #b9ffe3;
             --display: "Barlow Condensed", Impact, sans-serif;
             --body: "Manrope", "Segoe UI", sans-serif;
             --mono: "IBM Plex Mono", Consolas, monospace;
@@ -42,7 +42,10 @@
 
         body {
             margin: 0;
-            background: radial-gradient(ellipse at 50% -15%, #2e1f3e 0, var(--ink) 54%);
+            background:
+                radial-gradient(circle at 20% 0%, rgba(169, 128, 255, .22), transparent 26%),
+                radial-gradient(circle at 80% 10%, rgba(180, 160, 255, .08), transparent 18%),
+                linear-gradient(180deg, #09070d 0%, #0d0b13 28%, #0a090d 100%);
             color: var(--paper);
             font-family: var(--body);
             font-size: 14px;
@@ -56,7 +59,7 @@
             display: none;
             place-items: center;
             padding: 24px;
-            background: radial-gradient(ellipse at center, #231a34 0, #120b19 72%);
+            background: radial-gradient(ellipse at center, #202923 0, #090d0c 72%);
             opacity: 1;
             transition: opacity .5s ease, visibility .5s ease;
         }
@@ -74,9 +77,9 @@
         .vault-intro {
             width: min(100%, 370px);
             padding: 28px;
-            border: 1px solid rgba(220, 184, 255, .3);
-            background: rgba(18, 11, 25, .88);
-            box-shadow: 0 24px 90px rgba(0, 0, 0, .5), inset 0 0 40px rgba(220, 184, 255, .035);
+            border: 1px solid rgba(244, 195, 78, .3);
+            background: rgba(12, 17, 15, .88);
+            box-shadow: 0 24px 90px rgba(0, 0, 0, .5), inset 0 0 40px rgba(244, 195, 78, .035);
             text-align: center;
         }
 
@@ -87,17 +90,17 @@
             aspect-ratio: 1;
             place-items: center;
             margin: 0 auto 21px;
-            border: 1px solid rgba(220, 184, 255, .5);
+            border: 1px solid rgba(244, 195, 78, .5);
             border-radius: 50%;
-            background: radial-gradient(circle, #2a1f3a 0 43%, #140d1d 44% 65%, #362543 66% 68%, #140d1d 69%);
-            box-shadow: 0 0 35px rgba(220, 184, 255, .12), inset 0 0 18px #000;
+            background: radial-gradient(circle, #202821 0 43%, #101613 44% 65%, #293129 66% 68%, #111613 69%);
+            box-shadow: 0 0 35px rgba(244, 195, 78, .12), inset 0 0 18px #000;
         }
 
         .vault-mark:before,
         .vault-mark:after {
             position: absolute;
             inset: 10px;
-            border: 1px dashed rgba(220, 184, 255, .45);
+            border: 1px dashed rgba(244, 195, 78, .45);
             border-radius: 50%;
             content: "";
             animation: vault-turn 5s linear infinite;
@@ -106,7 +109,7 @@
         .vault-mark:after {
             inset: 24px;
             border-style: solid;
-            border-color: rgba(188, 168, 255, .4);
+            border-color: rgba(120, 216, 208, .4);
             animation-direction: reverse;
             animation-duration: 8s;
         }
@@ -122,7 +125,7 @@
             border-radius: 50%;
             color: var(--lime);
             font: 500 18px var(--mono);
-            box-shadow: 0 0 18px rgba(220, 184, 255, .2);
+            box-shadow: 0 0 18px rgba(244, 195, 78, .2);
             animation: vault-dial 2.4s cubic-bezier(.45, 0, .55, 1) infinite alternate;
         }
 
@@ -148,8 +151,8 @@
 
         .vault-skip {
             padding: 9px 14px;
-            border: 1px solid rgba(220, 184, 255, .55);
-            background: rgba(220, 184, 255, .08);
+            border: 1px solid rgba(244, 195, 78, .55);
+            background: rgba(244, 195, 78, .08);
             color: var(--paper);
             cursor: pointer;
             font: 600 9px var(--mono);
@@ -163,23 +166,13 @@
         }
 
         @keyframes vault-turn {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
         }
 
         @keyframes vault-dial {
-            0% {
-                transform: rotate(-40deg);
-            }
-
-            55% {
-                transform: rotate(115deg);
-            }
-
-            100% {
-                transform: rotate(300deg);
-            }
+            0% { transform: rotate(-40deg); }
+            55% { transform: rotate(115deg); }
+            100% { transform: rotate(300deg); }
         }
 
         a {
@@ -193,14 +186,17 @@
         .topbar {
             position: sticky;
             z-index: 10;
-            min-height: 176px;
+            min-height: 96px;
             top: 0;
             display: flex;
             overflow: hidden;
             isolation: isolate;
             align-items: center;
             justify-content: space-between;
-            background: #1b1326;
+            padding: 14px clamp(22px, 8vw, 125px) 10px;
+            background: rgba(12, 9, 16, .88);
+            border-bottom: 1px solid rgba(232, 207, 255, .15);
+            backdrop-filter: blur(10px);
         }
 
         .role-card:after {
@@ -250,20 +246,22 @@
             gap: 11px;
             text-decoration: none;
             font-family: var(--display);
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 800;
-            letter-spacing: 1.2px;
+            letter-spacing: 1.3px;
         }
 
         .brand-mark {
             display: grid;
-            width: 31px;
+            width: 28px;
             aspect-ratio: 1;
             place-items: center;
-            border: 1px solid var(--lime);
-            color: var(--lime);
+            border: 1px solid rgba(228, 209, 255, .7);
+            color: #f1e6ff;
+            background: rgba(217, 182, 255, .045);
             transform: rotate(45deg);
-            font: 800 18px var(--display);
+            font: 800 16px var(--display);
+            box-shadow: inset 0 0 15px rgba(217, 182, 255, .15), 0 0 18px rgba(217, 182, 255, .1);
         }
 
         .brand-mark span {
@@ -276,15 +274,18 @@
             gap: 6px;
             overflow-x: auto;
             scrollbar-width: none;
+            margin-left: 18px;
         }
 
         .nav a {
             flex: 0 0 auto;
-            padding: 7px 10px;
-            color: #c3c8bd;
+            padding: 8px 10px 9px;
+            color: rgba(246, 240, 255, .65);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
         .nav a:hover,
@@ -299,14 +300,16 @@
 
         .download-button {
             flex: 0 0 auto;
-            padding: 9px 14px;
-            border: 0;
-            background: var(--lime);
-            color: var(--ink);
+            padding: 10px 14px;
+            border: 1px solid rgba(217, 182, 255, .38);
+            background: rgba(217, 182, 255, .04);
+            color: var(--paper);
             cursor: pointer;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
+            letter-spacing: .12em;
             text-transform: uppercase;
+            box-shadow: inset 0 0 18px rgba(255, 255, 255, .01);
         }
 
         .download-button:hover {
@@ -321,14 +324,17 @@
         .hero {
             position: relative;
             display: grid;
-            min-height: min(740px, calc(100svh - 56px));
-            grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+            min-height: min(640px, calc(100svh - 90px));
+            grid-template-columns: minmax(0, 1.06fr) minmax(300px, .94fr);
             align-items: center;
-            gap: 40px;
+            gap: 28px;
             overflow: hidden;
-            padding: 74px clamp(22px, 8vw, 125px);
+            padding: 52px clamp(22px, 8vw, 125px) 34px;
             border-bottom: 1px solid var(--line);
-            background: radial-gradient(ellipse at 75% 48%, rgba(220, 184, 255, .16), transparent 34%), radial-gradient(ellipse at 20% 90%, rgba(188, 168, 255, .10), transparent 40%), repeating-linear-gradient(135deg, transparent 0 48px, rgba(255, 255, 255, .018) 49px 50px), #160f1d;
+            background:
+                radial-gradient(circle at 76% 34%, rgba(169, 128, 255, .18), transparent 18%),
+                radial-gradient(circle at 20% 90%, rgba(255, 178, 158, .08), transparent 18%),
+                linear-gradient(135deg, #0f0c17 0%, #171421 35%, #100d15 100%);
         }
 
         .hero:after {
@@ -337,9 +343,9 @@
             bottom: -35vw;
             width: 66vw;
             height: 66vw;
-            border: 1px solid rgba(220, 184, 255, .18);
+            border: 1px solid rgba(244, 195, 78, .18);
             border-radius: 50%;
-            box-shadow: 0 0 0 40px rgba(220, 184, 255, .025), 0 0 0 90px rgba(220, 184, 255, .018), 0 0 0 160px rgba(188, 168, 255, .018);
+            box-shadow: 0 0 0 40px rgba(244, 195, 78, .025), 0 0 0 90px rgba(244, 195, 78, .018), 0 0 0 160px rgba(120, 216, 208, .018);
             content: "";
             pointer-events: none;
         }
@@ -352,9 +358,9 @@
 
         .eyebrow,
         .section-kicker {
-            color: var(--lime);
+            color: rgba(245, 234, 255, .8);
             font: 600 10px var(--mono);
-            letter-spacing: 1.5px;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
         }
 
@@ -366,36 +372,42 @@
         }
 
         h1 {
-            max-width: 680px;
-            margin: 17px 0 14px;
-            font: 900 clamp(64px, 9vw, 120px)/.82 var(--display);
-            letter-spacing: 0;
+            max-width: 620px;
+            margin: 18px 0 14px;
+            font: 900 clamp(62px, 7.5vw, 118px)/.8 var(--display);
+            letter-spacing: -2px;
             text-transform: uppercase;
+            text-shadow: 0 0 32px rgba(169, 128, 255, .08);
         }
 
         h1 span {
             display: block;
-            color: var(--lime);
+            color: #f5eeff;
         }
 
         .hero-copy>p {
-            max-width: 510px;
+            max-width: 500px;
             margin-bottom: 23px;
-            color: #b8beb2;
+            color: #d7cfe4;
             font-size: 15px;
+            line-height: 1.6;
         }
 
         .hero-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: 10px;
         }
 
         .hero-tags span {
-            padding: 6px 10px;
-            border: 1px solid var(--line);
-            color: #e6e9df;
+            padding: 7px 12px;
+            border: 1px solid rgba(228, 209, 255, .18);
+            background: rgba(255, 255, 255, .02);
+            color: #efe9ff;
             font: 500 10px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
         .hero-art {
@@ -411,7 +423,7 @@
             position: absolute;
             width: min(92%, 390px);
             aspect-ratio: 1;
-            border: 1px solid rgba(188, 168, 255, .2);
+            border: 1px solid rgba(228, 209, 255, .16);
             border-radius: 50%;
             content: "";
             transform: rotateX(68deg) rotateZ(-20deg);
@@ -419,19 +431,19 @@
 
         .hero-art:after {
             width: min(75%, 320px);
-            border-color: rgba(220, 184, 255, .25);
+            border-color: rgba(190, 157, 255, .22);
             transform: rotateX(68deg) rotateZ(30deg);
         }
 
         .crest {
             position: relative;
             display: grid;
-            width: min(80%, 330px);
+            width: min(78%, 320px);
             aspect-ratio: 1;
             place-items: center;
-            border: 1px solid rgba(220, 184, 255, .65);
-            background: linear-gradient(145deg, rgba(220, 184, 255, .14), rgba(20, 13, 29, .78) 48%, rgba(188, 168, 255, .12));
-            box-shadow: 0 25px 80px rgba(0, 0, 0, .5), inset 0 0 48px rgba(220, 184, 255, .08);
+            border: 1px solid rgba(224, 205, 255, .52);
+            background: linear-gradient(145deg, rgba(190, 157, 255, .12), rgba(19, 15, 25, .82) 46%, rgba(125, 92, 160, .1));
+            box-shadow: 0 25px 80px rgba(0, 0, 0, .45), inset 0 0 48px rgba(190, 157, 255, .08);
             clip-path: polygon(50% 0, 88% 16%, 100% 50%, 85% 84%, 50% 100%, 15% 84%, 0 50%, 12% 16%);
             transform: rotateY(-10deg) rotateX(5deg);
             animation: emblem-hover 6s ease-in-out infinite;
@@ -440,7 +452,7 @@
         .crest:before {
             position: absolute;
             inset: 10%;
-            border: 1px solid rgba(220, 184, 255, .34);
+            border: 1px solid rgba(224, 205, 255, .26);
             content: "";
             clip-path: inherit;
         }
@@ -449,7 +461,7 @@
             position: absolute;
             width: 72%;
             height: 1px;
-            background: linear-gradient(90deg, transparent, var(--lime), transparent);
+            background: linear-gradient(90deg, transparent, rgba(232, 207, 255, .8), transparent);
             content: "";
             transform: rotate(-45deg);
         }
@@ -461,7 +473,7 @@
         }
 
         .crest-inner b {
-            color: var(--lime);
+            color: #f1e7ff;
             font: 900 128px/.8 var(--display);
         }
 
@@ -478,7 +490,7 @@
             width: 116px;
             height: auto;
             opacity: .9;
-            filter: drop-shadow(0 0 18px rgba(220, 184, 255, .18));
+            filter: drop-shadow(0 0 18px rgba(244, 195, 78, .18));
         }
 
         .hero-hud {
@@ -508,26 +520,27 @@
         .action-primary,
         .action-secondary {
             display: inline-flex;
-            min-height: 45px;
+            min-height: 42px;
             align-items: center;
             justify-content: center;
             gap: 9px;
-            padding: 0 16px;
-            border: 1px solid var(--lime);
+            padding: 0 18px;
+            border: 1px solid rgba(217, 182, 255, .3);
             text-decoration: none;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
+            letter-spacing: .12em;
             text-transform: uppercase;
             transition: transform .2s ease, background .2s ease;
         }
 
         .action-primary {
-            background: var(--lime);
-            color: #15111e;
+            background: rgba(217, 182, 255, .1);
+            color: #f4eeff;
         }
 
         .action-secondary {
-            background: rgba(255, 255, 255, .035);
+            background: rgba(255, 255, 255, .015);
             color: var(--paper);
         }
 
@@ -537,7 +550,7 @@
         }
 
         .action-secondary:hover {
-            background: rgba(220, 184, 255, .12);
+            background: rgba(244, 195, 78, .12);
         }
 
         .hero-readout {
@@ -579,11 +592,15 @@
             justify-content: space-between;
             gap: 18px;
             align-items: center;
-            padding: 13px clamp(22px, 8vw, 125px);
-            background: var(--lime);
-            color: #201a2f;
-            font-size: 11px;
+            padding: 12px clamp(22px, 8vw, 125px);
+            background: rgba(169, 128, 255, .03);
+            border-top: 1px solid rgba(217, 182, 255, .12);
+            border-bottom: 1px solid rgba(217, 182, 255, .12);
+            color: #eadffe;
+            font-size: 10px;
             font-weight: 800;
+            letter-spacing: .14em;
+            text-transform: uppercase;
         }
 
         .notice span:last-child {
@@ -596,7 +613,7 @@
         }
 
         .section {
-            padding: 88px 0;
+            padding: 74px 0;
             border-bottom: 1px solid var(--line);
         }
 
@@ -612,17 +629,20 @@
             margin: 8px 0 0;
             font: 800 clamp(40px, 6vw, 68px)/.95 var(--display);
             text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #f8f3ff;
         }
 
         .section-head p {
             max-width: 390px;
             margin: 0;
-            color: var(--muted);
+            color: #d7c9ed;
             font-size: 12px;
+            line-height: 1.7;
         }
 
         .section-number {
-            color: rgba(220, 184, 255, .55);
+            color: rgba(226, 209, 255, .68);
             font: 600 13px var(--mono);
         }
 
@@ -637,8 +657,9 @@
             min-height: 246px;
             overflow: hidden;
             padding: 22px;
-            border: 1px solid var(--line);
-            background: linear-gradient(145deg, rgba(255, 255, 255, .04), transparent 54%), var(--panel);
+            border: 1px solid rgba(217, 182, 255, .14);
+            background: rgba(23, 20, 33, .72);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.01);
         }
 
         .mode-card:after {
@@ -647,9 +668,9 @@
             bottom: -82px;
             width: 180px;
             height: 180px;
-            border: 1px solid rgba(220, 184, 255, .2);
+            border: 1px solid rgba(213, 255, 72, .2);
             border-radius: 50%;
-            box-shadow: 0 0 0 18px rgba(220, 184, 255, .025), 0 0 0 38px rgba(220, 184, 255, .02);
+            box-shadow: 0 0 0 18px rgba(213, 255, 72, .025), 0 0 0 38px rgba(213, 255, 72, .02);
             content: "";
         }
 
@@ -667,13 +688,13 @@
             justify-content: space-between;
             gap: 14px;
             padding: 8px 0;
-            border-top: 1px solid var(--line);
-            color: #b4baaf;
+            border-top: 1px solid rgba(228, 209, 255, .12);
+            color: #d8c8ee;
             font-size: 11px;
         }
 
         .metric strong {
-            color: var(--paper);
+            color: #f8f3ff;
             font: 500 11px var(--mono);
             text-align: right;
         }
@@ -681,9 +702,9 @@
         .callout {
             margin-top: 14px;
             padding: 16px 19px;
-            border-left: 3px solid var(--orange);
-            background: rgba(255, 159, 209, .07);
-            color: #dedbd3;
+            border-left: 3px solid rgba(217, 182, 255, .9);
+            background: linear-gradient(90deg, rgba(169, 128, 255, .11), rgba(255,255,255,0));
+            color: #e9e0f5;
             font-size: 11px;
         }
 
@@ -694,7 +715,7 @@
             margin: -8px 0 18px;
             padding: 11px 13px;
             border: 1px solid var(--line);
-            background: linear-gradient(100deg, rgba(220, 184, 255, .07), transparent 70%), var(--panel);
+            background: linear-gradient(100deg, rgba(244, 195, 78, .07), transparent 70%), var(--panel);
         }
 
         .toolbar-label,
@@ -732,9 +753,9 @@
         }
 
         .format-button.active {
-            border-color: rgba(220, 184, 255, .38);
+            border-color: rgba(244, 195, 78, .38);
             background: var(--lime);
-            color: #180f1e;
+            color: #15160f;
         }
 
         .series,
@@ -786,7 +807,7 @@
 
         .search-label input:focus {
             border-color: var(--lime);
-            box-shadow: 0 0 0 2px rgba(220, 184, 255, .13);
+            box-shadow: 0 0 0 2px rgba(244, 195, 78, .13);
         }
 
         .search-count {
@@ -813,8 +834,8 @@
         .map-tile:hover,
         .mode-card:hover,
         .role-card:hover {
-            border-color: rgba(220, 184, 255, .6);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, .22), 0 0 25px rgba(220, 184, 255, .06);
+            border-color: rgba(244, 195, 78, .6);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, .22), 0 0 25px rgba(244, 195, 78, .06);
             transform: translateY(-3px);
         }
 
@@ -850,8 +871,9 @@
         .map-group {
             display: grid;
             grid-template-columns: 180px 1fr;
-            border: 1px solid var(--line);
-            background: var(--panel);
+            border: 1px solid rgba(217, 182, 255, .12);
+            background: rgba(23, 20, 33, .8);
+            box-shadow: none;
         }
 
         .map-type {
@@ -860,17 +882,20 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 20px;
-            background: radial-gradient(circle at 75% 15%, rgba(220, 184, 255, .22), transparent 35%), repeating-linear-gradient(135deg, transparent 0 13px, rgba(255, 255, 255, .035) 14px 15px), #221a2f;
+            background: linear-gradient(135deg, rgba(169, 128, 255, .12), rgba(255, 178, 158, .02)), repeating-linear-gradient(135deg, transparent 0 13px, rgba(255, 255, 255, .02) 14px 15px), #171421;
         }
 
         .map-type small {
-            color: var(--lime);
+            color: #f1e6ff;
             font: 500 9px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
         .map-type strong {
             font: 800 26px/.95 var(--display);
             text-transform: uppercase;
+            color: #f7f3ff;
         }
 
         .map-list {
@@ -889,8 +914,9 @@
             justify-content: space-between;
             overflow: hidden;
             padding: 12px;
-            border: 1px solid rgba(245, 246, 238, .13);
-            background: linear-gradient(155deg, rgba(220, 184, 255, .12), transparent 48%), repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, .025) 19px 20px), #181524;
+            border: 1px solid rgba(217, 182, 255, .1);
+            background: linear-gradient(155deg, rgba(169, 128, 255, .08), transparent 48%), repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, .018) 19px 20px), #171421;
+            box-shadow: inset 0 0 18px rgba(0,0,0,.12);
         }
 
         .map-photo {
@@ -917,11 +943,11 @@
         }
 
         .map-tile:nth-child(3n + 2) {
-            background: linear-gradient(155deg, rgba(131, 223, 203, .12), transparent 48%), repeating-linear-gradient(-45deg, transparent 0 18px, rgba(255, 255, 255, .025) 19px 20px), #181524;
+            background: linear-gradient(155deg, rgba(183, 240, 221, .12), transparent 48%), repeating-linear-gradient(-45deg, transparent 0 18px, rgba(255, 255, 255, .025) 19px 20px), #171421;
         }
 
         .map-tile:nth-child(3n) {
-            background: linear-gradient(155deg, rgba(255, 159, 209, .12), transparent 48%), repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, .025) 19px 20px), #181524;
+            background: linear-gradient(155deg, rgba(243, 183, 154, .12), transparent 48%), repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, .025) 19px 20px), #171421;
         }
 
         .map-tile:after {
@@ -939,8 +965,10 @@
         .map-tile small {
             position: relative;
             z-index: 2;
-            color: var(--muted);
+            color: #e5d9f8;
             font: 500 9px var(--mono);
+            letter-spacing: .08em;
+            text-transform: uppercase;
         }
 
         .map-tile strong {
@@ -948,12 +976,186 @@
             z-index: 2;
             font: 700 26px/.9 var(--display);
             text-transform: uppercase;
+            color: #fffafc;
         }
 
         .map-footnote {
             margin: 16px 0 0;
             color: var(--muted);
             font-size: 11px;
+        }
+
+        .callout-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .callout-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid rgba(217, 182, 255, .16);
+            background: rgba(23, 20, 33, .8);
+            transition: border-color .2s ease, transform .2s ease;
+        }
+
+        .callout-card:hover {
+            border-color: rgba(244, 195, 78, .65);
+            transform: translateY(-2px);
+        }
+
+        .callout-image-button {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            cursor: zoom-in;
+        }
+
+        .callout-image-button:focus-visible {
+            outline: 2px solid var(--lime);
+            outline-offset: 3px;
+        }
+
+        .callout-image-frame {
+            display: grid;
+            min-height: 230px;
+            aspect-ratio: 1.45;
+            place-items: center;
+            overflow: hidden;
+            background: #0c0b10;
+        }
+
+        .callout-image-frame img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .callout-image-frame.is-placeholder {
+            position: relative;
+        }
+
+        .callout-image-frame.is-placeholder:after {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            padding: 6px 8px;
+            background: rgba(12, 9, 16, .9);
+            color: #f1e6ff;
+            content: "VISUEL DE JEU · PLAN À AJOUTER";
+            font: 500 8px var(--mono);
+        }
+
+        .callout-card figcaption {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 14px;
+            border-top: 1px solid rgba(217, 182, 255, .12);
+        }
+
+        .callout-card figcaption strong {
+            color: #f7f3ff;
+            font: 700 21px/.95 var(--display);
+            text-transform: uppercase;
+        }
+
+        .callout-card figcaption span {
+            color: var(--muted);
+            font: 500 8px var(--mono);
+            text-align: right;
+            text-transform: uppercase;
+        }
+
+        .callout-tiktok-link {
+            color: var(--lime) !important;
+            font: 600 9px var(--mono) !important;
+            text-decoration: none;
+        }
+
+        .callout-tiktok-link:hover,
+        .callout-tiktok-link:focus-visible {
+            text-decoration: underline;
+        }
+
+        .callout-lightbox {
+            width: min(94vw, 1100px);
+            max-width: none;
+            max-height: 92vh;
+            max-height: 92dvh;
+            padding: 16px;
+            overflow: auto;
+            border: 1px solid rgba(217, 182, 255, .35);
+            background: #100e16;
+            color: #f7f3ff;
+        }
+
+        .callout-lightbox::backdrop {
+            background: rgba(0, 0, 0, .86);
+            backdrop-filter: blur(5px);
+        }
+
+        .callout-lightbox-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .callout-lightbox-head h3 {
+            margin: 0;
+            font: 700 25px/.95 var(--display);
+            text-transform: uppercase;
+        }
+
+        .callout-lightbox-close {
+            flex: 0 0 auto;
+            min-width: 42px;
+            min-height: 42px;
+            border: 1px solid rgba(217, 182, 255, .35);
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .callout-lightbox-close:hover,
+        .callout-lightbox-close:focus-visible {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+
+        .callout-lightbox-image {
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: calc(92dvh - 110px);
+            margin: 0 auto;
+            object-fit: contain;
+        }
+
+        .callout-lightbox-tiktok {
+            display: inline-block;
+            margin-top: 12px;
+            color: var(--lime);
+            font: 600 11px var(--mono);
+            text-decoration: none;
+        }
+
+        .callout-lightbox-tiktok[hidden] {
+            display: none;
+        }
+
+        .callout-lightbox-tiktok:hover,
+        .callout-lightbox-tiktok:focus-visible {
+            text-decoration: underline;
         }
 
         .series-grid {
@@ -975,6 +1177,7 @@
             gap: 12px;
             padding: 17px 20px;
             border-bottom: 1px solid var(--line);
+            background: linear-gradient(90deg, rgba(169, 128, 255, .07), rgba(255,255,255,0));
         }
 
         .series-title h3 {
@@ -983,8 +1186,10 @@
         }
 
         .series-title span {
-            color: var(--lime);
+            color: #f3eaff;
             font: 600 10px var(--mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
         }
 
         .map-sequence {
@@ -1025,8 +1230,8 @@
         .side-note {
             margin: 0 20px 20px;
             padding: 11px 13px;
-            background: rgba(220, 184, 255, .07);
-            color: #d4dacd;
+            background: rgba(169, 128, 255, .08);
+            color: #e0d3f5;
             font-size: 10px;
         }
 
@@ -1045,7 +1250,7 @@
 
         .veto-block h3 {
             margin: 0 0 12px;
-            color: var(--cyan);
+            color: #f1e7ff;
             font: 700 26px var(--display);
             text-transform: uppercase;
         }
@@ -1064,19 +1269,19 @@
         .grand-final {
             margin-top: 14px;
             padding: 18px 20px;
-            border: 1px solid rgba(255, 159, 209, .36);
-            background: linear-gradient(110deg, rgba(255, 159, 209, .09), transparent 75%);
+            border: 1px solid rgba(169, 128, 255, .36);
+            background: linear-gradient(110deg, rgba(169, 128, 255, .1), transparent 75%);
         }
 
         .grand-final b {
-            color: var(--orange);
+            color: #f0deff;
             font: 700 22px var(--display);
             text-transform: uppercase;
         }
 
         .grand-final p {
             margin: 5px 0 0;
-            color: #cbc8bf;
+            color: #d8cee8;
             font-size: 11px;
         }
 
@@ -1097,8 +1302,9 @@
             margin: 0 0 18px;
             padding: 24px 30px;
             overflow: hidden;
-            border: 1px solid rgba(255, 159, 209, .38);
-            background: linear-gradient(90deg, rgba(8, 12, 12, .94) 0%, rgba(8, 12, 12, .78) 56%, rgba(8, 12, 12, .4) 100%), url("assets/maps/image.jpg") center 48% / cover no-repeat, #160f1d;
+            border: 1px solid rgba(217, 182, 255, .35);
+            background: linear-gradient(90deg, rgba(13, 11, 18, .94) 0%, rgba(13, 11, 18, .82) 56%, rgba(13, 11, 18, .48) 100%), url("assets/maps/image.png") center 48% / cover no-repeat, #0d0b12;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 40px rgba(0,0,0,.12);
         }
 
         .arsenal-banner:after {
@@ -1164,7 +1370,8 @@
             top: 84px;
             padding: 18px;
             border: 1px solid var(--line);
-            background: var(--panel);
+            background: linear-gradient(180deg, rgba(169, 128, 255, .09), rgba(23, 20, 33, .96));
+            box-shadow: 0 18px 36px rgba(0,0,0,.06);
         }
 
         .restriction-aside b {
@@ -1297,9 +1504,9 @@
             flex-direction: column;
             gap: 2px;
             padding: 5px 8px;
-            border: 1px solid rgba(255, 159, 209, .25);
-            background: rgba(255, 159, 209, .06);
-            color: #f3c4b4;
+            border: 1px solid rgba(169, 128, 255, .28);
+            background: rgba(169, 128, 255, .06);
+            color: #eddfff;
             font-size: 10px;
             line-height: 1.45;
         }
@@ -1314,8 +1521,8 @@
         }
 
         .tag.allowed {
-            border-color: rgba(220, 184, 255, .25);
-            background: rgba(220, 184, 255, .05);
+            border-color: rgba(213, 255, 72, .25);
+            background: rgba(213, 255, 72, .05);
             color: #e4f0b6;
         }
 
@@ -1330,7 +1537,7 @@
             margin-top: 15px;
             padding: 15px 17px;
             border-left: 3px solid var(--orange);
-            background: rgba(255, 159, 209, .07);
+            background: rgba(255, 117, 74, .07);
             color: #e5d7d1;
             font-size: 11px;
         }
@@ -1356,20 +1563,20 @@
             overflow: hidden;
             padding: 14px 14px 12px;
             border: 1px solid rgba(255, 255, 255, .12);
-            background: radial-gradient(circle at top right, rgba(220, 184, 255, .15), transparent 38%), var(--panel);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
+            background: radial-gradient(circle at top right, rgba(169, 128, 255, .15), transparent 38%), var(--panel);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02), 0 18px 30px rgba(0,0,0,.08);
             isolation: isolate;
             transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
         }
 
-        .role-card>* {
+        .role-card > * {
             position: relative;
             z-index: 2;
         }
 
         .role-card small {
             display: block;
-            color: rgba(220, 184, 255, .95);
+            color: rgba(244, 195, 78, .95);
             letter-spacing: 1.7px;
             font: 700 9px var(--mono);
             text-transform: uppercase;
@@ -1395,7 +1602,7 @@
 
         .role-rules h3 {
             margin-bottom: 14px;
-            color: var(--cyan);
+            color: #f3eaff;
             font: 700 28px var(--display);
             text-transform: uppercase;
         }
@@ -1414,8 +1621,8 @@
         .role-pool {
             margin-top: 14px;
             padding: 13px;
-            background: rgba(220, 184, 255, .07);
-            color: #e3e7d8;
+            background: rgba(169, 128, 255, .08);
+            color: #efe5ff;
             font: 500 10px/1.8 var(--mono);
         }
 
@@ -1452,64 +1659,6 @@
             padding: 16px;
             border: 1px solid var(--line);
             background: var(--panel);
-        }
-
-        .equipment-examples {
-            margin-top: 36px;
-        }
-
-        .equipment-examples h3 {
-            margin: 0 0 5px;
-            color: var(--cyan);
-            font: 700 30px/.95 var(--display);
-            text-transform: uppercase;
-        }
-
-        .equipment-examples>p {
-            margin: 0 0 15px;
-            color: var(--muted);
-            font-size: 11px;
-        }
-
-        .equipment-gallery {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-        }
-
-        .equipment-shot {
-            min-width: 0;
-            margin: 0;
-            overflow: hidden;
-            border: 1px solid var(--line);
-            background: var(--panel);
-        }
-
-        .equipment-shot img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
-        }
-
-        .equipment-shot figcaption {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            gap: 10px;
-            padding: 10px 12px;
-        }
-
-        .equipment-shot strong {
-            color: var(--paper);
-            font: 700 20px/.95 var(--display);
-            text-transform: uppercase;
-        }
-
-        .equipment-shot span {
-            color: var(--lime);
-            font: 500 9px var(--mono);
-            text-align: right;
         }
 
         .operator-rule strong {
@@ -1609,16 +1758,32 @@
                 grid-template-columns: 1fr;
             }
 
+            .callout-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 8px;
+            }
+
+            .callout-image-frame {
+                min-height: 150px;
+            }
+
+            .callout-card figcaption {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 5px;
+                padding: 10px;
+            }
+
+            .callout-card figcaption span {
+                text-align: left;
+            }
+
             .mode-card {
                 min-height: 210px;
             }
 
             .check-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .equipment-gallery {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .arsenal-stats {
@@ -1725,10 +1890,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .equipment-gallery {
-                grid-template-columns: 1fr;
-            }
-
             .restriction-layout {
                 grid-template-columns: 1fr;
             }
@@ -1820,18 +1981,17 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-
-            .vault-mark:before,
-            .vault-mark:after,
-            .vault-handle {
-                animation: none;
-            }
+                .vault-mark:before,
+                .vault-mark:after,
+                .vault-handle {
+                    animation: none;
+                }
         }
 
         .pdf-export {
-            background: #120b19 !important;
-            color: #f1f0e9 !important;
-            font-size: 9pt !important;
+                background: #090d0c !important;
+                color: #f1f0e9 !important;
+                font-size: 9pt !important;
         }
 
         .pdf-export .topbar,
@@ -1840,28 +2000,28 @@
         .pdf-export .format-toolbar,
         .pdf-export .restriction-tools,
         .pdf-export .empty-state {
-            display: none !important;
+                display: none !important;
         }
 
         .pdf-export .hero {
-            min-height: 0;
-            grid-template-columns: 1fr .65fr;
-            gap: 10mm;
-            padding: 18mm 12mm;
-            background: #181524 !important;
-            break-after: page;
+                min-height: 0;
+                grid-template-columns: 1fr .65fr;
+                gap: 10mm;
+                padding: 18mm 12mm;
+                background: #171b16 !important;
+                break-after: page;
         }
 
         .pdf-export main {
-            width: 100%;
+                width: 100%;
         }
 
         .pdf-export .section {
-            padding: 9mm 0;
+                padding: 9mm 0;
         }
 
         .pdf-export .section-head h2 {
-            font-size: 34pt;
+                font-size: 34pt;
         }
 
         .pdf-export .map-group,
@@ -1870,17 +2030,17 @@
         .pdf-export .role-card,
         .pdf-export .role-rules,
         .pdf-export .check-item {
-            break-inside: avoid;
+                break-inside: avoid;
         }
 
         .pdf-export .section,
         .pdf-export .role-card {
-            opacity: 1 !important;
-            transform: none !important;
+                opacity: 1 !important;
+                transform: none !important;
         }
 
         .pdf-export footer {
-            padding: 5mm 0;
+                padding: 5mm 0;
         }
 
         @media print {
@@ -1927,7 +2087,7 @@
                 grid-template-columns: 1fr .65fr;
                 gap: 10mm;
                 padding: 18mm 12mm;
-                background: #181524 !important;
+                background: #171b16 !important;
                 break-after: page;
             }
 
@@ -2147,11 +2307,10 @@
                 class="brand-mark"><span>N</span></span> NOXIUS / COMPÉTITIF</a>
         <nav class="nav" aria-label="Navigation du guide">
             <a href="#accueil">Briefing</a>
-            <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#series">BO3 / BO5</a><a
+            <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#callouts">Callouts</a><a href="#series">BO3 / BO5</a><a
                 href="#restrictions">Restrictions</a><a href="#roles">Rôles</a><a href="#match">Avant-match</a>
         </nav>
-        <button class="download-button" type="button" aria-label="Télécharger le guide au format PDF">↓ &nbsp;
-            Télécharger le PDF</button>
+        <button class="download-button" type="button" aria-label="Télécharger le guide au format PDF">↓ &nbsp; Télécharger le PDF</button>
     </header>
 
     <section class="hero" id="accueil">
@@ -2213,7 +2372,7 @@
                     <div class="metric"><span>Spectateurs / mot de passe</span><strong>N/A / N/A</strong></div>
                     <div class="metric"><span>Autoriser les invitations</span><strong>Oui</strong></div>
                 </article>
-                <article class="mode-card">
+                                <article class="mode-card">
                     <h3>Contrôle</h3>
                     <div class="metric"><span>Limite de score de manche</span><strong>3</strong></div>
                     <div class="metric"><span>Temps par manche</span><strong>90 s</strong></div>
@@ -2284,12 +2443,111 @@
             </div>
             <p class="map-footnote">Le pool est révisé chaque année selon le vote des équipes qualifiées aux finales
                 mondiales. L’administration peut exceptionnellement le modifier en cours de saison.</p>
+            <p class="map-footnote"><a href="#callouts">Voir les plans annotés →</a></p>
+        </section>
+
+        <section class="section" id="callouts">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker">03 / Plans annotés</div>
+                    <h2>Callouts des cartes</h2>
+                </div>
+                <p>Les plans annotés sont affichés directement pour réviser les noms des zones avant les scrims.</p>
+            </div>
+            <div class="callout-gallery">
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Summit">
+                        <div class="callout-image-frame"><img src="assets/maps/summit.png" alt="Plan des callouts de Summit annoté"></div>
+                    </button>
+                    <figcaption><strong>Summit</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7595867552253840651?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Takeoff">
+                        <div class="callout-image-frame"><img src="assets/maps/takeoff.png" alt="Plan des callouts de Takeoff annoté"></div>
+                    </button>
+                    <figcaption><strong>Takeoff</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7609366939361660181?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Tunisia">
+                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/tunisia.png" alt="Vue de jeu de Tunisia, plan annoté à ajouter" loading="lazy"></div>
+                    </button>
+                    <figcaption><strong>Tunisia</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7638695851509992725?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Hacienda">
+                        <div class="callout-image-frame"><img src="assets/maps/hacienda.png" alt="Plan des callouts de Hacienda annoté"></div>
+                    </button>
+                    <figcaption><strong>Hacienda</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7603863367777864981?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan d’Arsenal">
+                        <div class="callout-image-frame"><img src="assets/maps/arsenal.png" alt="Plan des callouts d’Arsenal annoté"></div>
+                    </button>
+                    <figcaption><strong>Arsenal</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7631972086344518933?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Firing Range">
+                        <div class="callout-image-frame"><img src="assets/maps/firing-range.png" alt="Plan des callouts de Firing Range annoté"></div>
+                    </button>
+                    <figcaption><strong>Firing Range</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7618267340022795540?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Raid">
+                        <div class="callout-image-frame"><img src="assets/maps/raid.png" alt="Plan des callouts de Raid annoté"></div>
+                    </button>
+                    <figcaption><strong>Raid</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7637281066000125204?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Coastal">
+                        <div class="callout-image-frame"><img src="assets/maps/coastal.png" alt="Plan des callouts de Coastal annoté"></div>
+                    </button>
+                    <figcaption><strong>Coastal</strong><span>Plan annoté</span></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Slums">
+                        <div class="callout-image-frame"><img src="assets/maps/slums.png" alt="Plan des callouts de Slums annoté"></div>
+                    </button>
+                    <figcaption><strong>Slums</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7619286599783763220?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Meltdown">
+                        <div class="callout-image-frame"><img src="assets/maps/meltdown.png" alt="Plan des callouts de Meltdown annoté"></div>
+                    </button>
+                    <figcaption><strong>Meltdown</strong><span>Plan annoté</span></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Combine">
+                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/combine.png" alt="Vue de jeu de Combine, plan annoté à ajouter" loading="lazy"></div>
+                    </button>
+                    <figcaption><strong>Combine</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7599613053721758996?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Standoff">
+                        <div class="callout-image-frame"><img src="assets/maps/standoff.jpg" alt="Plan des callouts de Standoff annoté"></div>
+                    </button>
+                    <figcaption><strong>Standoff</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7610726343029837077?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
+                </figure>
+                <figure class="callout-card">
+                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Crossroads Strike">
+                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/crossroads-strike.jpg" alt="Vue de jeu de Crossroads Strike, plan annoté à ajouter" loading="lazy"></div>
+                    </button>
+                    <figcaption><strong>Crossroads Strike</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7641305753390697749?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
+                </figure>
+            </div>
+            <dialog class="callout-lightbox" id="callout-lightbox" aria-labelledby="callout-lightbox-title">
+                <div class="callout-lightbox-head">
+                    <h3 id="callout-lightbox-title"></h3>
+                    <button class="callout-lightbox-close" type="button" aria-label="Fermer l’image agrandie">×</button>
+                </div>
+                <img class="callout-lightbox-image" alt="">
+                <a class="callout-lightbox-tiktok" target="_blank" rel="noopener noreferrer" hidden>Ouvrir les callouts sur TikTok ↗</a>
+            </dialog>
         </section>
 
         <section class="section" id="series">
             <div class="section-head">
                 <div>
-                    <div class="section-kicker">03 / Ordre de série &amp; veto</div>
+                    <div class="section-kicker">04 / Ordre de série &amp; veto</div>
                     <h2>Les formats</h2>
                 </div>
                 <p>Choisissez une vue pour réviser le déroulé. Les bans, picks et côtés restent présentés à titre
@@ -2376,7 +2634,7 @@
         <section class="section" id="restrictions">
             <div class="section-head">
                 <div>
-                    <div class="section-kicker">04 / Armurerie — restrictions</div>
+                    <div class="section-kicker">05 / Armurerie — restrictions</div>
                     <h2>Arsenal restreint</h2>
                 </div>
                 <p>Repérez en un coup d’œil les armes, accessoires et équipements interdits ou autorisés pour la saison
@@ -2563,7 +2821,7 @@
         <section class="section" id="roles">
             <div class="section-head">
                 <div>
-                    <div class="section-kicker">05 / Classes d’armes par joueur</div>
+                    <div class="section-kicker">06 / Classes d’armes par joueur</div>
                     <h2>Les rôles</h2>
                 </div>
                 <p>Affichage de référence uniquement : les rôles sont déclarés au début de la série auprès de
@@ -2571,22 +2829,13 @@
             </div>
             <div class="roles-layout">
                 <div class="role-grid">
-                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy"
-                            decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy"
-                            decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
                     </article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy"
-                            decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt=""
-                            loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong>
-                    </article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt=""
-                            loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong>
-                    </article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt=""
-                            loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de
-                            précision</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de précision</strong></article>
                 </div>
                 <article class="role-rules">
                     <h3>Règles de classe</h3>
@@ -2623,37 +2872,12 @@
                         chaque changement avec l’équipe. L’infraction entraîne la perte de la carte concernée.</p>
                 </div>
             </div>
-            <div class="equipment-examples">
-                <h3>Exemples d’équipements</h3>
-                <p>Captures de classes multijoueur à titre d’exemple. Vérifiez toujours que chaque élément respecte les
-                    restrictions en vigueur.</p>
-                <div class="equipment-gallery">
-                    <figure class="equipment-shot">
-                        <img src="assets/maps/Equipement.jpg"
-                            alt="Capture d’une classe multijoueur avec le fusil LW3-Tundra" loading="lazy"
-                            decoding="async">
-                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
-                    </figure>
-                    <figure class="equipment-shot">
-                        <img src="assets/maps/Equipement1.jpg"
-                            alt="Capture d’une classe multijoueur avec le fusil Oden Châtiment divin" loading="lazy"
-                            decoding="async">
-                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
-                    </figure>
-                    <figure class="equipment-shot">
-                        <img src="assets/maps/Equipement2.jpg"
-                            alt="Capture d’une classe multijoueur avec le VMP Éclosions toxiques" loading="lazy"
-                            decoding="async">
-                        <figcaption><span>EXEMPLE DE CLASSE</span></figcaption>
-                    </figure>
-                </div>
-            </div>
         </section>
 
         <section class="section" id="match">
             <div class="section-head">
                 <div>
-                    <div class="section-kicker">06 / Routine d’équipe</div>
+                    <div class="section-kicker">07 / Routine d’équipe</div>
                     <h2>Avant le lancement</h2>
                 </div>
                 <p>Une vérification courte pour limiter les erreurs évitables en match officiel ou en scrim.</p>
@@ -2733,7 +2957,7 @@
                     body.classList.add('pdf-export');
                     await new Promise((resolve) => requestAnimationFrame(resolve));
                     exportCanvas = await window.html2canvas(body, {
-                        backgroundColor: '#120b19',
+                        backgroundColor: '#090d0c',
                         imageTimeout: 10000,
                         logging: false,
                         scale: 1.05,
@@ -2801,6 +3025,38 @@
             const restrictionItems = [...document.querySelectorAll('.restriction-content details')];
             const count = document.querySelector('#restriction-count');
             const emptyState = document.querySelector('#restriction-empty');
+            const calloutLightbox = document.querySelector('#callout-lightbox');
+            const calloutLightboxTitle = document.querySelector('#callout-lightbox-title');
+            const calloutLightboxImage = calloutLightbox.querySelector('.callout-lightbox-image');
+            const calloutLightboxTikTok = calloutLightbox.querySelector('.callout-lightbox-tiktok');
+
+            document.querySelectorAll('.callout-image-button').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const card = button.closest('.callout-card');
+                    const image = button.querySelector('img');
+                    const mapName = card.querySelector('figcaption strong').textContent.trim();
+                    const tikTokLink = card.querySelector('.callout-tiktok-link');
+                    calloutLightboxTitle.textContent = mapName;
+                    calloutLightboxImage.src = image.currentSrc || image.src;
+                    calloutLightboxImage.alt = image.alt;
+                    calloutLightboxTikTok.hidden = !tikTokLink;
+                    if (tikTokLink) calloutLightboxTikTok.href = tikTokLink.href;
+                    calloutLightbox.showModal();
+                });
+            });
+
+            calloutLightbox.querySelector('.callout-lightbox-close').addEventListener('click', () => {
+                calloutLightbox.close();
+            });
+            calloutLightbox.addEventListener('click', (event) => {
+                if (event.target === calloutLightbox) calloutLightbox.close();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && calloutLightbox.open) {
+                    calloutLightbox.close();
+                }
+            });
+
             const normalize = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr');
             const frenchTerms = new Map(Object.entries({
                 'Argus': 'Fusil à pompe · Argus',
