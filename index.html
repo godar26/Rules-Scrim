@@ -1303,7 +1303,7 @@
             padding: 24px 30px;
             overflow: hidden;
             border: 1px solid rgba(217, 182, 255, .35);
-            background: linear-gradient(90deg, rgba(13, 11, 18, .94) 0%, rgba(13, 11, 18, .82) 56%, rgba(13, 11, 18, .48) 100%), url("assets/maps/image.png") center 48% / cover no-repeat, #0d0b12;
+            background: linear-gradient(90deg, rgba(13, 11, 18, .94) 0%, rgba(13, 11, 18, .82) 56%, rgba(13, 11, 18, .48) 100%), url("assets/maps/image.jpg") center 48% / cover no-repeat, #0d0b12;
             box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 40px rgba(0,0,0,.12);
         }
 
@@ -2043,6 +2043,38 @@
                 padding: 5mm 0;
         }
 
+        .pdf-contents {
+                display: none;
+        }
+
+        .pdf-export .pdf-contents {
+                display: block;
+                margin: 0 auto;
+                padding: 8mm 12mm;
+                border-bottom: 1px solid rgba(217, 182, 255, .16);
+                background: #11100f;
+        }
+
+        .pdf-contents h2 {
+                margin: 0 0 4mm;
+                color: #f4c34e;
+                font: 700 17pt/1 var(--display);
+                text-transform: uppercase;
+        }
+
+        .pdf-contents-links {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2mm 4mm;
+        }
+
+        .pdf-contents a {
+                padding: 2mm 0;
+                border-bottom: 1px solid rgba(217, 182, 255, .16);
+                color: #f1e6ff;
+                font: 600 8pt var(--mono);
+        }
+
         @media print {
             :root {
                 color-scheme: light;
@@ -2310,7 +2342,6 @@
             <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#callouts">Callouts</a><a href="#series">BO3 / BO5</a><a
                 href="#restrictions">Restrictions</a><a href="#roles">Rôles</a><a href="#match">Avant-match</a>
         </nav>
-        <button class="download-button" type="button" aria-label="Télécharger le guide au format PDF">↓ &nbsp; Télécharger le PDF</button>
     </header>
 
     <section class="hero" id="accueil">
@@ -2344,6 +2375,18 @@
     </section>
     <div class="notice"><span>RÉFÉRENCE : CALL OF DUTY: MOBILE WORLD CHAMPIONSHIP 2026</span><span>MISE À JOUR
             OFFICIELLE AFFICHÉE : 24.09.2026</span></div>
+    <nav class="pdf-contents" aria-label="Sommaire du PDF">
+        <h2>Accès rapide</h2>
+        <div class="pdf-contents-links">
+            <a href="#reglages">01 · Réglages</a>
+            <a href="#maps">02 · Cartes</a>
+            <a href="#callouts">03 · Callouts</a>
+            <a href="#series">04 · BO3 / BO5</a>
+            <a href="#restrictions">05 · Restrictions</a>
+            <a href="#roles">06 · Rôles</a>
+            <a href="#match">07 · Avant-match</a>
+        </div>
+    </nav>
 
     <main>
         <section class="section" id="reglages">
@@ -2950,17 +2993,33 @@
                 const initialLabel = downloadButton.innerHTML;
                 let exportCanvas;
                 let pdfUrl;
+                const initialScrollY = window.scrollY;
                 downloadButton.disabled = true;
                 downloadButton.textContent = 'Préparation du PDF...';
                 try {
                     await loadPdfLibrary();
                     body.classList.add('pdf-export');
+                    downloadButton.textContent = 'Chargement des visuels...';
+                    window.scrollTo(0, 0);
                     await new Promise((resolve) => requestAnimationFrame(resolve));
+                    const images = [...body.querySelectorAll('img')];
+                    images.forEach((image) => {
+                        image.loading = 'eager';
+                    });
+                    const localImages = images.filter((image) => {
+                        const src = image.getAttribute('src');
+                        return src && new URL(src, document.baseURI).origin === window.location.origin;
+                    });
+                    await Promise.all(localImages.map((image) => image.decode().catch(() => {
+                        throw new Error(`Impossible de charger l’image ${image.getAttribute('src')}.`);
+                    })));
+                    await document.fonts.ready;
+                    downloadButton.textContent = 'Mise en page du PDF...';
                     exportCanvas = await window.html2canvas(body, {
                         backgroundColor: '#090d0c',
                         imageTimeout: 10000,
                         logging: false,
-                        scale: 1.05,
+                        scale: .75,
                         useCORS: true,
                         windowWidth: 1200,
                         scrollY: 0
@@ -2977,6 +3036,12 @@
                         orientation: 'portrait',
                         compress: true
                     });
+                    pdf.setProperties({
+                        title: 'Guide Noxius — COD: Mobile 2026',
+                        subject: 'Guide compétitif interactif avec navigation et liens',
+                        author: 'Noxius',
+                        creator: 'Guide Noxius Esports'
+                    });
                     for (let top = 0; top < exportCanvas.height; top += sliceHeight) {
                         const height = Math.min(sliceHeight, exportCanvas.height - top);
                         const pageCanvas = document.createElement('canvas');
@@ -2991,6 +3056,54 @@
                         pageCanvas.width = 0;
                         pageCanvas.height = 0;
                     }
+                    const canvasScale = exportCanvas.width / 1200;
+                    const millimetersPerPixel = contentWidth / exportCanvas.width;
+                    const pageCount = Math.ceil(exportCanvas.height / sliceHeight);
+                    const targetPositions = new Map(
+                        [...body.querySelectorAll('[id]')].map((element) => {
+                            const rect = element.getBoundingClientRect();
+                            return [element.id, Math.max(0, rect.top + window.scrollY) * canvasScale];
+                        })
+                    );
+                    downloadButton.textContent = 'Ajout des liens interactifs...';
+                    body.querySelectorAll('a[href]').forEach((link) => {
+                        if (getComputedStyle(link).display === 'none') return;
+                        const href = link.getAttribute('href');
+                        const isInternal = href.startsWith('#');
+                        const destinationY = isInternal ? targetPositions.get(decodeURIComponent(href.slice(1))) : null;
+                        const url = !isInternal && /^https?:\/\//i.test(link.href) ? link.href : null;
+                        if (isInternal && destinationY === undefined) return;
+                        if (!isInternal && !url) return;
+                        const destinationPage = isInternal ? Math.min(pageCount - 1, Math.floor(destinationY / sliceHeight)) : null;
+                        const destinationTop = isInternal
+                            ? margin + (destinationY - destinationPage * sliceHeight) * millimetersPerPixel
+                            : null;
+                        [...link.getClientRects()].forEach((rect) => {
+                            const left = Math.max(0, rect.left * canvasScale);
+                            const right = Math.min(exportCanvas.width, rect.right * canvasScale);
+                            const top = Math.max(0, (rect.top + window.scrollY) * canvasScale);
+                            const bottom = Math.min(exportCanvas.height, (rect.bottom + window.scrollY) * canvasScale);
+                            if (right <= left || bottom <= top) return;
+                            const firstPage = Math.floor(top / sliceHeight);
+                            const lastPage = Math.floor(Math.max(top, bottom - 1) / sliceHeight);
+                            for (let pageIndex = firstPage; pageIndex <= lastPage; pageIndex += 1) {
+                                const pageTop = pageIndex * sliceHeight;
+                                const clippedTop = Math.max(top, pageTop);
+                                const clippedBottom = Math.min(bottom, pageTop + sliceHeight);
+                                const options = isInternal
+                                    ? { pageNumber: destinationPage + 1, top: destinationTop }
+                                    : { url };
+                                pdf.setPage(pageIndex + 1);
+                                pdf.link(
+                                    margin + left * millimetersPerPixel,
+                                    margin + (clippedTop - pageTop) * millimetersPerPixel,
+                                    (right - left) * millimetersPerPixel,
+                                    (clippedBottom - clippedTop) * millimetersPerPixel,
+                                    options
+                                );
+                            }
+                        });
+                    });
                     const pdfBlob = pdf.output('blob');
                     pdfUrl = URL.createObjectURL(pdfBlob);
                     const downloadLink = document.createElement('a');
@@ -3013,6 +3126,7 @@
                         exportCanvas.height = 0;
                     }
                     body.classList.remove('pdf-export');
+                    window.scrollTo(0, initialScrollY);
                     downloadButton.disabled = false;
                     downloadButton.innerHTML = initialLabel;
                 }
