@@ -166,13 +166,23 @@
         }
 
         @keyframes vault-turn {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes vault-dial {
-            0% { transform: rotate(-40deg); }
-            55% { transform: rotate(115deg); }
-            100% { transform: rotate(300deg); }
+            0% {
+                transform: rotate(-40deg);
+            }
+
+            55% {
+                transform: rotate(115deg);
+            }
+
+            100% {
+                transform: rotate(300deg);
+            }
         }
 
         a {
@@ -296,29 +306,6 @@
         .nav a.active {
             color: var(--lime);
             box-shadow: inset 0 -2px var(--lime);
-        }
-
-        .download-button {
-            flex: 0 0 auto;
-            padding: 10px 14px;
-            border: 1px solid rgba(217, 182, 255, .38);
-            background: rgba(217, 182, 255, .04);
-            color: var(--paper);
-            cursor: pointer;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            box-shadow: inset 0 0 18px rgba(255, 255, 255, .01);
-        }
-
-        .download-button:hover {
-            background: white;
-        }
-
-        .download-button:disabled {
-            cursor: wait;
-            opacity: .72;
         }
 
         .hero {
@@ -659,7 +646,7 @@
             padding: 22px;
             border: 1px solid rgba(217, 182, 255, .14);
             background: rgba(23, 20, 33, .72);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,.01);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .01);
         }
 
         .mode-card:after {
@@ -703,7 +690,7 @@
             margin-top: 14px;
             padding: 16px 19px;
             border-left: 3px solid rgba(217, 182, 255, .9);
-            background: linear-gradient(90deg, rgba(169, 128, 255, .11), rgba(255,255,255,0));
+            background: linear-gradient(90deg, rgba(169, 128, 255, .11), rgba(255, 255, 255, 0));
             color: #e9e0f5;
             font-size: 11px;
         }
@@ -916,7 +903,18 @@
             padding: 12px;
             border: 1px solid rgba(217, 182, 255, .1);
             background: linear-gradient(155deg, rgba(169, 128, 255, .08), transparent 48%), repeating-linear-gradient(45deg, transparent 0 18px, rgba(255, 255, 255, .018) 19px 20px), #171421;
-            box-shadow: inset 0 0 18px rgba(0,0,0,.12);
+            box-shadow: inset 0 0 18px rgba(0, 0, 0, .12);
+            cursor: zoom-in;
+        }
+
+        .map-tile:focus-visible,
+        .role-card:focus-visible {
+            outline: 2px solid var(--lime);
+            outline-offset: 3px;
+        }
+
+        .role-card {
+            cursor: zoom-in;
         }
 
         .map-photo {
@@ -986,6 +984,38 @@
         }
 
         .callout-gallery {
+            display: grid;
+            gap: 28px;
+        }
+
+        .callout-mode-group {
+            min-width: 0;
+        }
+
+        .callout-mode-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(217, 182, 255, .2);
+        }
+
+        .callout-mode-heading span {
+            color: var(--lime);
+            font: 500 9px var(--mono);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .callout-mode-heading h3 {
+            margin: 0;
+            color: #f7f3ff;
+            font: 700 24px/.95 var(--display);
+            text-transform: uppercase;
+        }
+
+        .callout-mode-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 14px;
@@ -1072,14 +1102,14 @@
             text-transform: uppercase;
         }
 
-        .callout-tiktok-link {
+        .callout-video-link {
             color: var(--lime) !important;
             font: 600 9px var(--mono) !important;
             text-decoration: none;
         }
 
-        .callout-tiktok-link:hover,
-        .callout-tiktok-link:focus-visible {
+        .callout-video-link:hover,
+        .callout-video-link:focus-visible {
             text-decoration: underline;
         }
 
@@ -1141,7 +1171,7 @@
             object-fit: contain;
         }
 
-        .callout-lightbox-tiktok {
+        .callout-lightbox-video {
             display: inline-block;
             margin-top: 12px;
             color: var(--lime);
@@ -1149,12 +1179,12 @@
             text-decoration: none;
         }
 
-        .callout-lightbox-tiktok[hidden] {
+        .callout-lightbox-video[hidden] {
             display: none;
         }
 
-        .callout-lightbox-tiktok:hover,
-        .callout-lightbox-tiktok:focus-visible {
+        .callout-lightbox-video:hover,
+        .callout-lightbox-video:focus-visible {
             text-decoration: underline;
         }
 
@@ -1177,7 +1207,7 @@
             gap: 12px;
             padding: 17px 20px;
             border-bottom: 1px solid var(--line);
-            background: linear-gradient(90deg, rgba(169, 128, 255, .07), rgba(255,255,255,0));
+            background: linear-gradient(90deg, rgba(169, 128, 255, .07), rgba(255, 255, 255, 0));
         }
 
         .series-title h3 {
@@ -1304,7 +1334,7 @@
             overflow: hidden;
             border: 1px solid rgba(217, 182, 255, .35);
             background: linear-gradient(90deg, rgba(13, 11, 18, .94) 0%, rgba(13, 11, 18, .82) 56%, rgba(13, 11, 18, .48) 100%), url("assets/maps/image.jpg") center 48% / cover no-repeat, #0d0b12;
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,.02), 0 20px 40px rgba(0,0,0,.12);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02), 0 20px 40px rgba(0, 0, 0, .12);
         }
 
         .arsenal-banner:after {
@@ -1371,7 +1401,7 @@
             padding: 18px;
             border: 1px solid var(--line);
             background: linear-gradient(180deg, rgba(169, 128, 255, .09), rgba(23, 20, 33, .96));
-            box-shadow: 0 18px 36px rgba(0,0,0,.06);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, .06);
         }
 
         .restriction-aside b {
@@ -1564,12 +1594,12 @@
             padding: 14px 14px 12px;
             border: 1px solid rgba(255, 255, 255, .12);
             background: radial-gradient(circle at top right, rgba(169, 128, 255, .15), transparent 38%), var(--panel);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02), 0 18px 30px rgba(0,0,0,.08);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02), 0 18px 30px rgba(0, 0, 0, .08);
             isolation: isolate;
             transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
         }
 
-        .role-card > * {
+        .role-card>* {
             position: relative;
             z-index: 2;
         }
@@ -1758,7 +1788,7 @@
                 grid-template-columns: 1fr;
             }
 
-            .callout-gallery {
+            .callout-mode-cards {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 8px;
             }
@@ -1802,10 +1832,6 @@
 
             .brand {
                 font-size: 18px;
-            }
-
-            .download-button {
-                padding: 8px 10px;
             }
 
             .hero {
@@ -1981,98 +2007,12 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
-                .vault-mark:before,
-                .vault-mark:after,
-                .vault-handle {
-                    animation: none;
-                }
-        }
 
-        .pdf-export {
-                background: #090d0c !important;
-                color: #f1f0e9 !important;
-                font-size: 9pt !important;
-        }
-
-        .pdf-export .topbar,
-        .pdf-export .intro-loader,
-        .pdf-export .hero-index,
-        .pdf-export .format-toolbar,
-        .pdf-export .restriction-tools,
-        .pdf-export .empty-state {
-                display: none !important;
-        }
-
-        .pdf-export .hero {
-                min-height: 0;
-                grid-template-columns: 1fr .65fr;
-                gap: 10mm;
-                padding: 18mm 12mm;
-                background: #171b16 !important;
-                break-after: page;
-        }
-
-        .pdf-export main {
-                width: 100%;
-        }
-
-        .pdf-export .section {
-                padding: 9mm 0;
-        }
-
-        .pdf-export .section-head h2 {
-                font-size: 34pt;
-        }
-
-        .pdf-export .map-group,
-        .pdf-export .series,
-        .pdf-export .veto-block,
-        .pdf-export .role-card,
-        .pdf-export .role-rules,
-        .pdf-export .check-item {
-                break-inside: avoid;
-        }
-
-        .pdf-export .section,
-        .pdf-export .role-card {
-                opacity: 1 !important;
-                transform: none !important;
-        }
-
-        .pdf-export footer {
-                padding: 5mm 0;
-        }
-
-        .pdf-contents {
-                display: none;
-        }
-
-        .pdf-export .pdf-contents {
-                display: block;
-                margin: 0 auto;
-                padding: 8mm 12mm;
-                border-bottom: 1px solid rgba(217, 182, 255, .16);
-                background: #11100f;
-        }
-
-        .pdf-contents h2 {
-                margin: 0 0 4mm;
-                color: #f4c34e;
-                font: 700 17pt/1 var(--display);
-                text-transform: uppercase;
-        }
-
-        .pdf-contents-links {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2mm 4mm;
-        }
-
-        .pdf-contents a {
-                padding: 2mm 0;
-                border-bottom: 1px solid rgba(217, 182, 255, .16);
-                color: #f1e6ff;
-                font: 600 8pt var(--mono);
+            .vault-mark:before,
+            .vault-mark:after,
+            .vault-handle {
+                animation: none;
+            }
         }
 
         @media print {
@@ -2103,7 +2043,6 @@
             }
 
             .topbar,
-            .download-button,
             .hero-index {
                 display: none !important;
             }
@@ -2339,8 +2278,9 @@
                 class="brand-mark"><span>N</span></span> NOXIUS / COMPÉTITIF</a>
         <nav class="nav" aria-label="Navigation du guide">
             <a href="#accueil">Briefing</a>
-            <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#callouts">Callouts</a><a href="#series">BO3 / BO5</a><a
-                href="#restrictions">Restrictions</a><a href="#roles">Rôles</a><a href="#match">Avant-match</a>
+            <a href="#reglages">Réglages</a><a href="#maps">Cartes</a><a href="#callouts">Callouts</a><a
+                href="#series">BO3 / BO5</a><a href="#restrictions">Restrictions</a><a href="#roles">Rôles</a><a
+                href="#match">Avant-match</a>
         </nav>
     </header>
 
@@ -2375,19 +2315,6 @@
     </section>
     <div class="notice"><span>RÉFÉRENCE : CALL OF DUTY: MOBILE WORLD CHAMPIONSHIP 2026</span><span>MISE À JOUR
             OFFICIELLE AFFICHÉE : 24.09.2026</span></div>
-    <nav class="pdf-contents" aria-label="Sommaire du PDF">
-        <h2>Accès rapide</h2>
-        <div class="pdf-contents-links">
-            <a href="#reglages">01 · Réglages</a>
-            <a href="#maps">02 · Cartes</a>
-            <a href="#callouts">03 · Callouts</a>
-            <a href="#series">04 · BO3 / BO5</a>
-            <a href="#restrictions">05 · Restrictions</a>
-            <a href="#roles">06 · Rôles</a>
-            <a href="#match">07 · Avant-match</a>
-        </div>
-    </nav>
-
     <main>
         <section class="section" id="reglages">
             <div class="section-head">
@@ -2415,7 +2342,7 @@
                     <div class="metric"><span>Spectateurs / mot de passe</span><strong>N/A / N/A</strong></div>
                     <div class="metric"><span>Autoriser les invitations</span><strong>Oui</strong></div>
                 </article>
-                                <article class="mode-card">
+                <article class="mode-card">
                     <h3>Contrôle</h3>
                     <div class="metric"><span>Limite de score de manche</span><strong>3</strong></div>
                     <div class="metric"><span>Temps par manche</span><strong>90 s</strong></div>
@@ -2492,90 +2419,105 @@
         <section class="section" id="callouts">
             <div class="section-head">
                 <div>
-                    <div class="section-kicker">03 / Plans annotés</div>
+                    <div class="section-kicker">03 / Callouts</div>
                     <h2>Callouts des cartes</h2>
                 </div>
                 <p>Les plans annotés sont affichés directement pour réviser les noms des zones avant les scrims.</p>
             </div>
             <div class="callout-gallery">
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Summit">
-                        <div class="callout-image-frame"><img src="assets/maps/summit.png" alt="Plan des callouts de Summit annoté"></div>
-                    </button>
-                    <figcaption><strong>Summit</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7595867552253840651?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Takeoff">
-                        <div class="callout-image-frame"><img src="assets/maps/takeoff.png" alt="Plan des callouts de Takeoff annoté"></div>
-                    </button>
-                    <figcaption><strong>Takeoff</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7609366939361660181?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Tunisia">
-                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/tunisia.png" alt="Vue de jeu de Tunisia, plan annoté à ajouter" loading="lazy"></div>
-                    </button>
-                    <figcaption><strong>Tunisia</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7638695851509992725?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Hacienda">
-                        <div class="callout-image-frame"><img src="assets/maps/hacienda.png" alt="Plan des callouts de Hacienda annoté"></div>
-                    </button>
-                    <figcaption><strong>Hacienda</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7603863367777864981?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan d’Arsenal">
-                        <div class="callout-image-frame"><img src="assets/maps/arsenal.png" alt="Plan des callouts d’Arsenal annoté"></div>
-                    </button>
-                    <figcaption><strong>Arsenal</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7631972086344518933?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Firing Range">
-                        <div class="callout-image-frame"><img src="assets/maps/firing-range.png" alt="Plan des callouts de Firing Range annoté"></div>
-                    </button>
-                    <figcaption><strong>Firing Range</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7618267340022795540?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Raid">
-                        <div class="callout-image-frame"><img src="assets/maps/raid.png" alt="Plan des callouts de Raid annoté"></div>
-                    </button>
-                    <figcaption><strong>Raid</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7637281066000125204?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Coastal">
-                        <div class="callout-image-frame"><img src="assets/maps/coastal.png" alt="Plan des callouts de Coastal annoté"></div>
-                    </button>
-                    <figcaption><strong>Coastal</strong><span>Plan annoté</span></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Slums">
-                        <div class="callout-image-frame"><img src="assets/maps/slums.png" alt="Plan des callouts de Slums annoté"></div>
-                    </button>
-                    <figcaption><strong>Slums</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7619286599783763220?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Meltdown">
-                        <div class="callout-image-frame"><img src="assets/maps/meltdown.png" alt="Plan des callouts de Meltdown annoté"></div>
-                    </button>
-                    <figcaption><strong>Meltdown</strong><span>Plan annoté</span></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Combine">
-                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/combine.png" alt="Vue de jeu de Combine, plan annoté à ajouter" loading="lazy"></div>
-                    </button>
-                    <figcaption><strong>Combine</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7599613053721758996?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Standoff">
-                        <div class="callout-image-frame"><img src="assets/maps/standoff.jpg" alt="Plan des callouts de Standoff annoté"></div>
-                    </button>
-                    <figcaption><strong>Standoff</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7610726343029837077?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok ↗</a></figcaption>
-                </figure>
-                <figure class="callout-card">
-                    <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Crossroads Strike">
-                        <div class="callout-image-frame is-placeholder"><img src="assets/maps/crossroads-strike.jpg" alt="Vue de jeu de Crossroads Strike, plan annoté à ajouter" loading="lazy"></div>
-                    </button>
-                    <figcaption><strong>Crossroads Strike</strong><a class="callout-tiktok-link" href="https://www.tiktok.com/@kalyx_codm/photo/7641305753390697749?is_from_webapp=1&amp;sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok · Plan à ajouter ↗</a></figcaption>
-                </figure>
+                <article class="callout-mode-group" aria-labelledby="callouts-hardpoint">
+                    <div class="callout-mode-heading"><span>POOL A · 5 CARTES</span><h3 id="callouts-hardpoint">Point stratégique</h3></div>
+                    <div class="callout-mode-cards">
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Summit">
+                                <div class="callout-image-frame"><img src="assets/maps/summit.png" alt="Plan des callouts de Summit annoté"></div>
+                            </button>
+                            <figcaption><strong>Summit</strong><a class="callout-video-link" href="assets/maps/summit.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Hacienda">
+                                <div class="callout-image-frame"><img src="assets/maps/hacienda.png" alt="Plan des callouts de Hacienda annoté"></div>
+                            </button>
+                            <figcaption><strong>Hacienda</strong><a class="callout-video-link" href="assets/maps/hacienda.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Combine">
+                                <div class="callout-image-frame is-placeholder"><img src="assets/maps/combine.png" alt="Vue de jeu de Combine, plan annoté à ajouter" loading="lazy"></div>
+                            </button>
+                            <figcaption><strong>Combine</strong><a class="callout-video-link" href="assets/maps/combine.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Takeoff">
+                                <div class="callout-image-frame"><img src="assets/maps/takeoff.png" alt="Plan des callouts de Takeoff annoté"></div>
+                            </button>
+                            <figcaption><strong>Takeoff</strong><a class="callout-video-link" href="assets/maps/takeoff.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan d’Arsenal">
+                                <div class="callout-image-frame"><img src="assets/maps/arsenal.png" alt="Plan des callouts d’Arsenal annoté"></div>
+                            </button>
+                            <figcaption><strong>Arsenal</strong><a class="callout-video-link" href="assets/maps/arsenal.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                    </div>
+                </article>
+                <article class="callout-mode-group" aria-labelledby="callouts-search-destroy">
+                    <div class="callout-mode-heading"><span>POOL B · 5 CARTES</span><h3 id="callouts-search-destroy">Recherche &amp; destruction</h3></div>
+                    <div class="callout-mode-cards">
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Tunisia">
+                                <div class="callout-image-frame is-placeholder"><img src="assets/maps/tunisia.png" alt="Vue de jeu de Tunisia, plan annoté à ajouter" loading="lazy"></div>
+                            </button>
+                            <figcaption><strong>Tunisia</strong><a class="callout-video-link" href="assets/maps/tunisia.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Firing Range">
+                                <div class="callout-image-frame"><img src="assets/maps/firing-range.png" alt="Plan des callouts de Firing Range annoté"></div>
+                            </button>
+                            <figcaption><strong>Firing Range</strong><a class="callout-video-link" href="assets/maps/firing-rang.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Coastal">
+                                <div class="callout-image-frame"><img src="assets/maps/coastal.png" alt="Plan des callouts de Coastal annoté"></div>
+                            </button>
+                            <figcaption><strong>Coastal</strong><span>Plan annoté</span></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Slums">
+                                <div class="callout-image-frame"><img src="assets/maps/slums.png" alt="Plan des callouts de Slums annoté"></div>
+                            </button>
+                            <figcaption><strong>Slums</strong><a class="callout-video-link" href="assets/maps/slums.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Meltdown">
+                                <div class="callout-image-frame"><img src="assets/maps/meltdown.png" alt="Plan des callouts de Meltdown annoté"></div>
+                            </button>
+                            <figcaption><strong>Meltdown</strong><span>Plan annoté</span></figcaption>
+                        </figure>
+                    </div>
+                </article>
+                <article class="callout-mode-group" aria-labelledby="callouts-control">
+                    <div class="callout-mode-heading"><span>POOL C · 3 CARTES</span><h3 id="callouts-control">Contrôle</h3></div>
+                    <div class="callout-mode-cards">
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Raid">
+                                <div class="callout-image-frame"><img src="assets/maps/raid.png" alt="Plan des callouts de Raid annoté"></div>
+                            </button>
+                            <figcaption><strong>Raid</strong><a class="callout-video-link" href="assets/maps/raid.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir le plan de Standoff">
+                                <div class="callout-image-frame"><img src="assets/maps/standoff.jpg" alt="Plan des callouts de Standoff annoté"></div>
+                            </button>
+                            <figcaption><strong>Standoff</strong><a class="callout-video-link" href="assets/maps/standoff.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                        <figure class="callout-card">
+                            <button class="callout-image-button" type="button" aria-label="Agrandir la carte de Crossroads Strike">
+                                <div class="callout-image-frame is-placeholder"><img src="assets/maps/crossroads-strike.png" alt="Vue de jeu de Crossroads Strike, plan annoté à ajouter" loading="lazy"></div>
+                            </button>
+                            <figcaption><strong>Crossroads Strike</strong><a class="callout-video-link" href="assets/maps/Crossroads%20strike.mp4" target="_blank" rel="noopener noreferrer">Vidéo ↗</a></figcaption>
+                        </figure>
+                    </div>
+                </article>
             </div>
             <dialog class="callout-lightbox" id="callout-lightbox" aria-labelledby="callout-lightbox-title">
                 <div class="callout-lightbox-head">
@@ -2583,7 +2525,8 @@
                     <button class="callout-lightbox-close" type="button" aria-label="Fermer l’image agrandie">×</button>
                 </div>
                 <img class="callout-lightbox-image" alt="">
-                <a class="callout-lightbox-tiktok" target="_blank" rel="noopener noreferrer" hidden>Ouvrir les callouts sur TikTok ↗</a>
+                <a class="callout-lightbox-video" target="_blank" rel="noopener noreferrer" hidden>Regarder la vidéo
+                    ↗</a>
             </dialog>
         </section>
 
@@ -2872,13 +2815,22 @@
             </div>
             <div class="roles-layout">
                 <div class="role-grid">
-                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/AR.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / AR</small><strong>Fusils d’assaut</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/SMG.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / SMG</small><strong>Pistolets-mitrailleurs</strong>
                     </article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong></article>
-                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt="" loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de précision</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/LMG.jpg" alt="" loading="lazy"
+                            decoding="async"><small>CLASSE / LMG</small><strong>Mitrailleuses</strong></article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/shotgun.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / SG</small><strong>Fusils à pompe</strong>
+                    </article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Marksman.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / MR</small><strong>Fusils tactiques</strong>
+                    </article>
+                    <article class="role-card"><img class="role-photo" src="assets/maps/Sniper.jpg" alt=""
+                            loading="lazy" decoding="async"><small>CLASSE / SR</small><strong>Fusils de
+                            précision</strong></article>
                 </div>
                 <article class="role-rules">
                     <h3>Règles de classe</h3>
@@ -2968,170 +2920,6 @@
                 window.setTimeout(dismissIntro, 1500);
             }
 
-            const downloadButton = document.querySelector('.download-button');
-            let pdfLibraryPromise;
-            const loadPdfLibrary = () => {
-                if (window.html2canvas && window.jspdf && window.jspdf.jsPDF) return Promise.resolve();
-                if (pdfLibraryPromise) return pdfLibraryPromise;
-                const loadScript = (url) => new Promise((resolve, reject) => {
-                    const script = document.createElement('script');
-                    script.src = url;
-                    script.onload = resolve;
-                    script.onerror = () => reject(new Error(`Impossible de charger ${url}`));
-                    document.head.append(script);
-                });
-                pdfLibraryPromise = loadScript('https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js')
-                    .then(() => loadScript('https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js'))
-                    .then(() => {
-                        if (!window.html2canvas || !window.jspdf || !window.jspdf.jsPDF) {
-                            throw new Error('Les bibliothèques PDF ne sont pas disponibles.');
-                        }
-                    });
-                return pdfLibraryPromise;
-            };
-            downloadButton.addEventListener('click', async () => {
-                const initialLabel = downloadButton.innerHTML;
-                let exportCanvas;
-                let pdfUrl;
-                const initialScrollY = window.scrollY;
-                downloadButton.disabled = true;
-                downloadButton.textContent = 'Préparation du PDF...';
-                try {
-                    await loadPdfLibrary();
-                    body.classList.add('pdf-export');
-                    downloadButton.textContent = 'Chargement des visuels...';
-                    window.scrollTo(0, 0);
-                    await new Promise((resolve) => requestAnimationFrame(resolve));
-                    const images = [...body.querySelectorAll('img')];
-                    images.forEach((image) => {
-                        image.loading = 'eager';
-                    });
-                    const localImages = images.filter((image) => {
-                        const src = image.getAttribute('src');
-                        return src && new URL(src, document.baseURI).origin === window.location.origin;
-                    });
-                    await Promise.all(localImages.map((image) => image.decode().catch(() => {
-                        throw new Error(`Impossible de charger l’image ${image.getAttribute('src')}.`);
-                    })));
-                    await document.fonts.ready;
-                    downloadButton.textContent = 'Mise en page du PDF...';
-                    exportCanvas = await window.html2canvas(body, {
-                        backgroundColor: '#090d0c',
-                        imageTimeout: 10000,
-                        logging: false,
-                        scale: .75,
-                        useCORS: true,
-                        windowWidth: 1200,
-                        scrollY: 0
-                    });
-                    const margin = 10;
-                    const pageWidth = 210;
-                    const pageHeight = 297;
-                    const contentWidth = pageWidth - margin * 2;
-                    const contentHeight = pageHeight - margin * 2;
-                    const sliceHeight = Math.floor(exportCanvas.width * contentHeight / contentWidth);
-                    const pdf = new window.jspdf.jsPDF({
-                        unit: 'mm',
-                        format: 'a4',
-                        orientation: 'portrait',
-                        compress: true
-                    });
-                    pdf.setProperties({
-                        title: 'Guide Noxius — COD: Mobile 2026',
-                        subject: 'Guide compétitif interactif avec navigation et liens',
-                        author: 'Noxius',
-                        creator: 'Guide Noxius Esports'
-                    });
-                    for (let top = 0; top < exportCanvas.height; top += sliceHeight) {
-                        const height = Math.min(sliceHeight, exportCanvas.height - top);
-                        const pageCanvas = document.createElement('canvas');
-                        pageCanvas.width = exportCanvas.width;
-                        pageCanvas.height = height;
-                        const context = pageCanvas.getContext('2d');
-                        if (!context) throw new Error('Impossible de préparer une page du PDF.');
-                        context.drawImage(exportCanvas, 0, top, exportCanvas.width, height, 0, 0, exportCanvas.width, height);
-                        const pageImage = pageCanvas.toDataURL('image/jpeg', .9);
-                        if (top > 0) pdf.addPage();
-                        pdf.addImage(pageImage, 'JPEG', margin, margin, contentWidth, height * contentWidth / exportCanvas.width, undefined, 'FAST');
-                        pageCanvas.width = 0;
-                        pageCanvas.height = 0;
-                    }
-                    const canvasScale = exportCanvas.width / 1200;
-                    const millimetersPerPixel = contentWidth / exportCanvas.width;
-                    const pageCount = Math.ceil(exportCanvas.height / sliceHeight);
-                    const targetPositions = new Map(
-                        [...body.querySelectorAll('[id]')].map((element) => {
-                            const rect = element.getBoundingClientRect();
-                            return [element.id, Math.max(0, rect.top + window.scrollY) * canvasScale];
-                        })
-                    );
-                    downloadButton.textContent = 'Ajout des liens interactifs...';
-                    body.querySelectorAll('a[href]').forEach((link) => {
-                        if (getComputedStyle(link).display === 'none') return;
-                        const href = link.getAttribute('href');
-                        const isInternal = href.startsWith('#');
-                        const destinationY = isInternal ? targetPositions.get(decodeURIComponent(href.slice(1))) : null;
-                        const url = !isInternal && /^https?:\/\//i.test(link.href) ? link.href : null;
-                        if (isInternal && destinationY === undefined) return;
-                        if (!isInternal && !url) return;
-                        const destinationPage = isInternal ? Math.min(pageCount - 1, Math.floor(destinationY / sliceHeight)) : null;
-                        const destinationTop = isInternal
-                            ? margin + (destinationY - destinationPage * sliceHeight) * millimetersPerPixel
-                            : null;
-                        [...link.getClientRects()].forEach((rect) => {
-                            const left = Math.max(0, rect.left * canvasScale);
-                            const right = Math.min(exportCanvas.width, rect.right * canvasScale);
-                            const top = Math.max(0, (rect.top + window.scrollY) * canvasScale);
-                            const bottom = Math.min(exportCanvas.height, (rect.bottom + window.scrollY) * canvasScale);
-                            if (right <= left || bottom <= top) return;
-                            const firstPage = Math.floor(top / sliceHeight);
-                            const lastPage = Math.floor(Math.max(top, bottom - 1) / sliceHeight);
-                            for (let pageIndex = firstPage; pageIndex <= lastPage; pageIndex += 1) {
-                                const pageTop = pageIndex * sliceHeight;
-                                const clippedTop = Math.max(top, pageTop);
-                                const clippedBottom = Math.min(bottom, pageTop + sliceHeight);
-                                const options = isInternal
-                                    ? { pageNumber: destinationPage + 1, top: destinationTop }
-                                    : { url };
-                                pdf.setPage(pageIndex + 1);
-                                pdf.link(
-                                    margin + left * millimetersPerPixel,
-                                    margin + (clippedTop - pageTop) * millimetersPerPixel,
-                                    (right - left) * millimetersPerPixel,
-                                    (clippedBottom - clippedTop) * millimetersPerPixel,
-                                    options
-                                );
-                            }
-                        });
-                    });
-                    const pdfBlob = pdf.output('blob');
-                    pdfUrl = URL.createObjectURL(pdfBlob);
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = pdfUrl;
-                    downloadLink.download = 'Guide-Noxius-CODM-2026.pdf';
-                    downloadLink.hidden = true;
-                    document.body.append(downloadLink);
-                    downloadLink.click();
-                    downloadLink.remove();
-                    const downloadUrl = pdfUrl;
-                    window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 60000);
-                    pdfUrl = null;
-                } catch (error) {
-                    console.error('Échec du téléchargement du guide PDF.', error);
-                    window.alert('Le téléchargement du PDF a échoué. Vérifiez votre connexion, puis réessayez.');
-                } finally {
-                    if (pdfUrl) URL.revokeObjectURL(pdfUrl);
-                    if (exportCanvas) {
-                        exportCanvas.width = 0;
-                        exportCanvas.height = 0;
-                    }
-                    body.classList.remove('pdf-export');
-                    window.scrollTo(0, initialScrollY);
-                    downloadButton.disabled = false;
-                    downloadButton.innerHTML = initialLabel;
-                }
-            });
-
             const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
             const sections = [...document.querySelectorAll('main .section')];
             const formatButtons = [...document.querySelectorAll('.format-button')];
@@ -3142,20 +2930,41 @@
             const calloutLightbox = document.querySelector('#callout-lightbox');
             const calloutLightboxTitle = document.querySelector('#callout-lightbox-title');
             const calloutLightboxImage = calloutLightbox.querySelector('.callout-lightbox-image');
-            const calloutLightboxTikTok = calloutLightbox.querySelector('.callout-lightbox-tiktok');
+            const calloutLightboxVideo = calloutLightbox.querySelector('.callout-lightbox-video');
+            const openImage = (image, mapName, videoLink) => {
+                calloutLightboxTitle.textContent = mapName;
+                calloutLightboxImage.src = image.currentSrc || image.src;
+                calloutLightboxImage.alt = image.alt;
+                calloutLightboxVideo.hidden = !videoLink;
+                if (videoLink) {
+                    calloutLightboxVideo.href = videoLink.href;
+                    calloutLightboxVideo.textContent = `Regarder la vidéo de ${mapName} ↗`;
+                }
+                calloutLightbox.showModal();
+            };
 
             document.querySelectorAll('.callout-image-button').forEach((button) => {
                 button.addEventListener('click', () => {
                     const card = button.closest('.callout-card');
                     const image = button.querySelector('img');
                     const mapName = card.querySelector('figcaption strong').textContent.trim();
-                    const tikTokLink = card.querySelector('.callout-tiktok-link');
-                    calloutLightboxTitle.textContent = mapName;
-                    calloutLightboxImage.src = image.currentSrc || image.src;
-                    calloutLightboxImage.alt = image.alt;
-                    calloutLightboxTikTok.hidden = !tikTokLink;
-                    if (tikTokLink) calloutLightboxTikTok.href = tikTokLink.href;
-                    calloutLightbox.showModal();
+                    openImage(image, mapName, card.querySelector('.callout-video-link'));
+                });
+            });
+
+            document.querySelectorAll('.map-tile, .role-card').forEach((card) => {
+                const image = card.querySelector('img');
+                const mapName = card.querySelector('strong')?.textContent.trim() || image.alt || 'image';
+                const enlargeImage = () => openImage(image, mapName, null);
+                card.tabIndex = 0;
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-label', `Agrandir l’image de ${mapName}`);
+                card.addEventListener('click', enlargeImage);
+                card.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        enlargeImage();
+                    }
                 });
             });
 
